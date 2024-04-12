@@ -67,6 +67,16 @@
                         </p>
                     </a>
                 </li>
+                @if(Auth::user()->role == 'admin')
+                    <li class="nav-item">
+                        <a href="{{ route('user-list') }}" class="nav-link">
+                            <i class="nav-icon far fa-user"></i>
+                            <p>
+                                User
+                            </p>
+                        </a>
+                    </li>
+                @endif
                 <li class="nav-item">
                     <form method="POST" action="{{ route('logout') }}">
                         @csrf
