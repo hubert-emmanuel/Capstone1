@@ -2,7 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Kurikulum;
+use App\Models\MataKuliah;
+use App\Models\Polling;
 use App\Models\PollingDetail;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class PollingDetailController extends Controller
@@ -12,7 +16,9 @@ class PollingDetailController extends Controller
      */
     public function index()
     {
-        //
+        return view('polling_detail.index',[
+            'pds' => PollingDetail::all(),
+        ]);
     }
 
     /**
@@ -20,7 +26,11 @@ class PollingDetailController extends Controller
      */
     public function create()
     {
-        //
+        return view('polling_detail.create', [
+            'ps' => Polling::all(),
+            'users' => User::all(),
+            'mks' => MataKuliah::all(),
+        ]);
     }
 
     /**
@@ -28,7 +38,13 @@ class PollingDetailController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validatedData  = validator($request->all(), [
+            'id_polling_detail' => 'required|string|max:20',
+        ])->validate();
+        $data = $request->all();
+        $pollingDetail = new PollingDetail($validatedData);
+        $pollingDetail -> save();
+        return redirect(route('polling-list'));
     }
 
     /**

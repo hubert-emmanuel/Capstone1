@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Kurikulum;
 use App\Models\Polling;
 use Illuminate\Http\Request;
 
@@ -22,7 +23,7 @@ class PollingController extends Controller
      */
     public function create()
     {
-        //
+        return view('polling.create');
     }
 
     /**
@@ -30,7 +31,13 @@ class PollingController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validatedData  = validator($request->all(), [
+            'id_polling' => 'required|string|max:20',
+        ])->validate();
+        $data = $request->all();
+        $polling = new Polling($validatedData);
+        $polling -> save();
+        return redirect(route('polling-list'));
     }
 
     /**

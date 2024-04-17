@@ -27,25 +27,27 @@
                     <div class="col-lg-6">
                         <div class="card">
                             <div class="card-body">
-                                <form action="{{ route('polling-create') }}">
-                                    <button type="submit" class="btn btn-primary">Tambah Polling</button>
+                                <form action="{{ route('polling_detail-create') }}">
+                                    <button type="submit" class="btn btn-primary">Tambah Polling Detail</button>
                                 </form>
                                 <br>
                                 <br>
                                 <table id="table-mk" class="table table-striped">
                                     <thead>
                                     <tr>
+                                        <th>ID Polling Detail</th>
                                         <th>ID Polling</th>
-                                        <th>Tanggal Mulai Polling</th>
-                                        <th>Tanggal Akhir Polling</th>
+                                        <th>ID User</th>
+                                        <th>ID Mata Kuliah</th>
                                     </tr>
                                     </thead>
                                     <tbody>
-                                    @foreach($ps as $p)
+                                    @foreach($pds as $pd)
                                         <tr>
-                                            <td>{{ $p->id_polling }}</td>
-                                            <td>{{ $p->tanggal_mulai_polling }}</td>
-                                            <td>{{ $p->tanggal_akhir_polling }}</td>
+                                            <td>{{ $pd->id_polling_detail }}</td>
+                                            <td>{{ $pd->polling_id_polling }}</td>
+                                            <td>{{ $pd->user_id_user }}</td>
+                                            <td>{{ $pd->mata_kuliah_id_mata_kuliah }}</td>
                                         </tr>
                                     @endforeach
                                     </tbody>

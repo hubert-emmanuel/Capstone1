@@ -52,10 +52,18 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="#" class="nav-link">
+                    <a href="{{ route('polling-list') }}" class="nav-link">
                         <i class="nav-icon fas fa-th"></i>
                         <p>
                             Polling
+                        </p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="{{ route('polling_detail-list') }}" class="nav-link">
+                        <i class="nav-icon fas fa-th"></i>
+                        <p>
+                            Polling Detail
                         </p>
                     </a>
                 </li>

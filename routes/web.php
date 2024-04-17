@@ -33,6 +33,7 @@ Route::middleware('auth')->group(function () {
     })->name('dashboard');
     Route::get('/matakuliah',[\App\Http\Controllers\MataKuliahController::class, 'index'])->name('matakuliah-list');
     Route::get('/polling',[\App\Http\Controllers\PollingController::class, 'index'])->name('polling-list');
+    Route::get('/polling_detail',[\App\Http\Controllers\PollingDetailController::class, 'index'])->name('polling_detail-list');
     Route::get('/kurikulum',[\App\Http\Controllers\KurikulumController::class, 'index'])->name('kurikulum-list');
 });
 
@@ -57,4 +58,10 @@ Route::middleware(['auth', 'admin'])->group(function () {
     Route::get('/user-edit/{user}', [\App\Http\Controllers\UserController::class, 'edit'])->name('user-edit');
     Route::post('/user-edit/{user}', [\App\Http\Controllers\UserController::class, 'update'])->name('user-update');
     Route::get('/user-delete/{user}', [\App\Http\Controllers\UserController::class, 'destroy'])->name('user-delete');
+
+    Route::get('/pl-create',[\App\Http\Controllers\PollingController::class, 'create'])->name('polling-create');
+    Route::post('/pl-create',[\App\Http\Controllers\PollingController::class, 'store'])->name('polling-store');
+    Route::get('/pld-create',[\App\Http\Controllers\PollingDetailController::class, 'create'])->name('polling_detail-create');
+    Route::post('/pld-create',[\App\Http\Controllers\PollingDetailController::class, 'store'])->name('polling_detail-store');
+    Route::get('/pl-delete/{polling}',[\App\Http\Controllers\MataKuliahController::class, 'destroy'])->name('polling-delete');
 });

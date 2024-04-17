@@ -12,6 +12,12 @@ class Polling extends Model
 
     use HasFactory;
 
+    protected $fillable = [
+        'id_polling',
+        'tanggal_mulai_polling',
+        'tanggal_akhir_polling',
+    ];
 
+    protected $primaryKey = 'id_polling';
 
 }
