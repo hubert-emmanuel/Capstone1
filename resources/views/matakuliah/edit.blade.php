@@ -33,12 +33,12 @@
                                     </div>
                                 @endif
 
-                                <form method="post" action="{{ route('matakuliah-update', ['matakuliah'=>$mk->id_mata_kuliah]) }}">
+                                <form method="post" action="{{ route('matakuliah-update', ['mataKuliah'=>$mk->id_mata_kuliah]) }}">
                                     @csrf
                                     <div class ="form-group">
                                         <label for="id-mk">ID Mata Kuliah</label>
                                         <input type="text" class="form-control" id="id-mk"
-                                               placeholder="Contoh: IN241" name="id_mata_kuliah" required
+                                               placeholder="Contoh: IN241" name="id_mata_kuliah" required readonly
                                                autofocus value="{{ $mk->id_mata_kuliah }}">
                                     </div>
                                     <div class ="form-group">

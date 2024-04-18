@@ -42,9 +42,11 @@ class MataKuliahController extends Controller
             'nama_mata_kuliah' => 'required|string|max:100',
             'program_studi' => 'required|string|max:100',
             'kurikulum_id_kurikulum' => 'required|string|max:100',
+            'foto' => 'mimes:jpeg,png|max:2048',
         ])->validate();
-        $data = $request->all();
+        $path = $request->file('foto')->store('foto_matakuliah', 'public');
         $mataKuliah = new MataKuliah($validatedData);
+        $mataKuliah->foto = $path;
         $mataKuliah -> save();
         return redirect(route('matakuliah-list'));
     }

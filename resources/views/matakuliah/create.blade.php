@@ -33,7 +33,7 @@
                                     </div>
                                 @endif
 
-                                <form method="post" action="{{ route('matakuliah-store') }}">
+                                    <form method="post" action="{{ route('matakuliah-store') }}" enctype="multipart/form-data">
                                     @csrf
                                     <div class ="form-group">
                                         <label for="id-mk">ID Mata Kuliah</label>
@@ -58,6 +58,12 @@
                                                     <option name="id_kurikulum" value="{{ $kk->id_kurikulum }}">{{ $kk->id_kurikulum }} - {{ $kk->tahun_ajaran }} - {{ $kk->semester_aktif }}</option>
                                                 @endforeach
                                             </select>
+                                        </div>
+                                    </div>
+                                    <div class ="form-group">
+                                        <label for="mk-foto" class="col-form-label col-sm-2">Foto</label>
+                                        <div class="col-sm-4">
+                                            <input type="file" id="mk-foto" name="foto">
                                         </div>
                                     </div>
                                     <button type="submit" class="btn btn-primary">Submit</button>

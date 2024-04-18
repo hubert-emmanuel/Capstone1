@@ -11,6 +11,11 @@
                 <div class="p-6 text-gray-900">
                     {{ __("You're logged in!") }}
                 </div>
+                <div class="p-6 text-black-50">
+                    <form action="{{ route('matakuliah-list') }}">
+                        <button type="submit" class="btn btn-primary">Lanjut</button>
+                    </form>
+                </div>
             </div>
         </div>
     </div>

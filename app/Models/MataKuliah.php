@@ -16,7 +16,8 @@ class MataKuliah extends Model
         'id_mata_kuliah',
         'nama_mata_kuliah',
         'program_studi',
-        'kurikulum_id_kurikulum'
+        'kurikulum_id_kurikulum',
+        'foto',
     ];
 
     protected $primaryKey = 'id_mata_kuliah';
