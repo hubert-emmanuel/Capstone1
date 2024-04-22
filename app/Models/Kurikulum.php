@@ -14,8 +14,6 @@ class Kurikulum extends Model
 
     protected $fillable = [
         'id_kurikulum',
-        'tahun_ajaran',
-        'semester_aktif'
     ];
 
     protected $primaryKey = 'id_kurikulum';

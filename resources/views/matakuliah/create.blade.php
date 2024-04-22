@@ -55,11 +55,22 @@
                                         <div class="col-sm-8">
                                             <select id="kk-mk" name="kurikulum_id_kurikulum" required class="form-control select2">
                                                 @foreach($kks as $kk)
-                                                    <option name="id_kurikulum" value="{{ $kk->id_kurikulum }}">{{ $kk->id_kurikulum }} - {{ $kk->tahun_ajaran }} - {{ $kk->semester_aktif }}</option>
+                                                    <option name="id_kurikulum" value="{{ $kk->id_kurikulum }}">{{ $kk->id_kurikulum }}</option>
                                                 @endforeach
                                             </select>
                                         </div>
                                     </div>
+                                        <div class="form-group">
+                                            <label for="sks-mk" class="col-form-label col-sm-2">SKS</label>
+                                            <div class="col-sm-8">
+                                                <select id="sks-mk" name="SKS" required class="form-control select2">
+                                                    <option name="SKS" value="1">1</option>
+                                                    <option name="SKS" value="2">2</option>
+                                                    <option name="SKS" value="3">3</option>
+                                                    <option name="SKS" value="4">4</option>
+                                                </select>
+                                            </div>
+                                        </div>
                                     <div class ="form-group">
                                         <label for="mk-foto" class="col-form-label col-sm-2">Foto</label>
                                         <div class="col-sm-4">

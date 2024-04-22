@@ -60,7 +60,8 @@
                                 <select class="form-control" id="user-role" name="role">
                                     <option value="0" selected>--Select Role--</option>
                                     <option value="admin" name="role">Admin</option>
-                                    <option value="user" name="role">User</option>
+                                    <option value="prodi" name="role">Program Studi</option>
+                                    <option value="mahasiswa" name="role">Mahasiswa</option>
                                 </select>
                             </div>
                             <button type="submit" class="btn btn-primary">Submit</button>

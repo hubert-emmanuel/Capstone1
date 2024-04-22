@@ -45,7 +45,8 @@
 
             <select id="role" class="block mt-1 w-full" name="role" required autofocus>
                 <option value="admin">Admin</option>
-                <option value="user">User</option>
+                <option value="prodi">Program Studi</option>
+                <option value="mahasiswa">Mahasiswa</option>
             </select>
         </div>
 

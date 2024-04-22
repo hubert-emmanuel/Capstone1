@@ -6,6 +6,7 @@ use App\Models\Kurikulum;
 use App\Models\MataKuliah;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\Validator;
 
 class KurikulumController extends Controller
 {
@@ -34,10 +35,7 @@ class KurikulumController extends Controller
     {
         $validatedData  = validator($request->all(), [
             'id_kurikulum' => 'required|string|max:20',
-            'tahun_ajaran' => 'required|string|max:100',
-            'semester_aktif' => 'required|string|max:100'
         ])->validate();
-        $data = $request->all();
         $kurikulum = new Kurikulum($validatedData);
         $kurikulum -> save();
         return redirect(route('kurikulum-list'));
@@ -56,7 +54,9 @@ class KurikulumController extends Controller
      */
     public function edit(Kurikulum $kurikulum)
     {
-        //
+        return view('kurikulum.edit', [
+            'kk' => $kurikulum,
+        ]);
     }
 
     /**
@@ -64,7 +64,12 @@ class KurikulumController extends Controller
      */
     public function update(Request $request, Kurikulum $kurikulum)
     {
-        //
+        $validatedData  = validator($request->all(), [
+            'id_kurikulum' => 'required|string|max:30',
+        ])->validate();
+        $kurikulum->id_kurikulum = $validatedData['id_kurikulum'];
+        $kurikulum->update($validatedData);
+        return redirect(route('kurikulum-list'));
     }
 
     /**

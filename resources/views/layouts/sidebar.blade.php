@@ -42,31 +42,36 @@
                         </p>
                     </a>
                 </li>
-                <li class="nav-item">
-                    <a href="{{ route('matakuliah-list') }}" class="nav-link">
-                        <i class="nav-icon fas fa-th"></i>
-                        <p>
-                            Mata Kuliah
-                        </p>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a href="{{ route('polling-list') }}" class="nav-link">
-                        <i class="nav-icon fas fa-th"></i>
-                        <p>
-                            Polling
-                        </p>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a href="{{ route('polling_detail-list') }}" class="nav-link">
-                        <i class="nav-icon fas fa-th"></i>
-                        <p>
-                            Polling Detail
-                        </p>
-                    </a>
-                </li>
-                @if(Auth::user()->role == 'admin')
+                @if(in_array(Auth::user()->role, ['prodi','mahasiswa']))
+                    <li class="nav-item">
+                        <a href="{{ route('matakuliah-list') }}" class="nav-link">
+                            <i class="nav-icon fas fa-th"></i>
+                            <p>
+                                Mata Kuliah
+                            </p>
+                        </a>
+                    </li>
+                @endif
+                @if(in_array(Auth::user()->role, ['prodi','mahasiswa']))
+                    <li class="nav-item">
+                        <a href="{{ route('polling-list') }}" class="nav-link">
+                            <i class="nav-icon fas fa-th"></i>
+                            <p>
+                                Polling
+                            </p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{{ route('polling_detail-list') }}" class="nav-link">
+                            <i class="nav-icon fas fa-th"></i>
+                            <p>
+                                Polling Detail
+                            </p>
+                        </a>
+                    </li>
+                @endif
+
+                @if(Auth::user()->role == 'prodi')
                     <li class="nav-item">
                         <a href="{{ route('kurikulum-list') }}" class="nav-link">
                             <i class="nav-icon fas fa-th"></i>

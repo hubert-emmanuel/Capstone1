@@ -41,6 +41,15 @@ Route::middleware(['auth', 'admin'])->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
+    Route::get('/user', [\App\Http\Controllers\UserController::class, 'index'])->name('user-list');
+    Route::get('/user/create', [\App\Http\Controllers\UserController::class, 'create'])->name('user-create');
+    Route::post('/user/create', [\App\Http\Controllers\UserController::class, 'store'])->name('user-store');
+    Route::get('/user-edit/{user}', [\App\Http\Controllers\UserController::class, 'edit'])->name('user-edit');
+    Route::post('/user-edit/{user}', [\App\Http\Controllers\UserController::class, 'update'])->name('user-update');
+    Route::get('/user-delete/{user}', [\App\Http\Controllers\UserController::class, 'destroy'])->name('user-delete');
+});
+
+Route::middleware(['auth', 'prodi'])->group(function () {
     Route::get('/mk-create',[\App\Http\Controllers\MataKuliahController::class, 'create'])->name('matakuliah-create');
     Route::post('/mk-create',[\App\Http\Controllers\MataKuliahController::class, 'store'])->name('matakuliah-store');
     Route::get('/mk-edit/{mataKuliah}',[\App\Http\Controllers\MataKuliahController::class, 'edit'])->name('matakuliah-edit');
@@ -50,18 +59,28 @@ Route::middleware(['auth', 'admin'])->group(function () {
     Route::get('/kurikulum',[\App\Http\Controllers\KurikulumController::class, 'index'])->name('kurikulum-list');
     Route::get('/kk-create',[\App\Http\Controllers\KurikulumController::class, 'create'])->name('kurikulum-create');
     Route::post('/kk-create',[\App\Http\Controllers\KurikulumController::class, 'store'])->name('kurikulum-store');
+    Route::get('/kk-edit/{kurikulum}',[\App\Http\Controllers\KurikulumController::class, 'edit'])->name('kurikulum-edit');
+    Route::post('/kk-edit/{kurikulum}',[\App\Http\Controllers\KurikulumController::class, 'update'])->name('kurikulum-update');
     Route::get('/kk-delete/{kurikulum}',[\App\Http\Controllers\KurikulumController::class, 'destroy'])->name('kurikulum-delete');
-
-    Route::get('/user', [\App\Http\Controllers\UserController::class, 'index'])->name('user-list');
-    Route::get('/user/create', [\App\Http\Controllers\UserController::class, 'create'])->name('user-create');
-    Route::post('/user/create', [\App\Http\Controllers\UserController::class, 'store'])->name('user-store');
-    Route::get('/user-edit/{user}', [\App\Http\Controllers\UserController::class, 'edit'])->name('user-edit');
-    Route::post('/user-edit/{user}', [\App\Http\Controllers\UserController::class, 'update'])->name('user-update');
-    Route::get('/user-delete/{user}', [\App\Http\Controllers\UserController::class, 'destroy'])->name('user-delete');
 
     Route::get('/pl-create',[\App\Http\Controllers\PollingController::class, 'create'])->name('polling-create');
     Route::post('/pl-create',[\App\Http\Controllers\PollingController::class, 'store'])->name('polling-store');
     Route::get('/pld-create',[\App\Http\Controllers\PollingDetailController::class, 'create'])->name('polling_detail-create');
     Route::post('/pld-create',[\App\Http\Controllers\PollingDetailController::class, 'store'])->name('polling_detail-store');
-    Route::get('/pl-delete/{polling}',[\App\Http\Controllers\MataKuliahController::class, 'destroy'])->name('polling-delete');
+    Route::get('/pl-delete/{polling}',[\App\Http\Controllers\PollingController::class, 'destroy'])->name('polling-delete');
 });
+
+Route::middleware(['auth', 'mahasiswa'])->group(function () {
+    Route::get('/mk-create',[\App\Http\Controllers\MataKuliahController::class, 'create'])->name('matakuliah-create');
+    Route::post('/mk-create',[\App\Http\Controllers\MataKuliahController::class, 'store'])->name('matakuliah-store');
+    Route::get('/mk-edit/{mataKuliah}',[\App\Http\Controllers\MataKuliahController::class, 'edit'])->name('matakuliah-edit');
+    Route::post('/mk-edit/{mataKuliah}',[\App\Http\Controllers\MataKuliahController::class, 'update'])->name('matakuliah-update');
+    Route::get('/mk-delete/{matakuliah}',[\App\Http\Controllers\MataKuliahController::class, 'destroy'])->name('matakuliah-delete');
+
+    Route::get('/pl-create',[\App\Http\Controllers\PollingController::class, 'create'])->name('polling-create');
+    Route::post('/pl-create',[\App\Http\Controllers\PollingController::class, 'store'])->name('polling-store');
+    Route::get('/pld-create',[\App\Http\Controllers\PollingDetailController::class, 'create'])->name('polling_detail-create');
+    Route::post('/pld-create',[\App\Http\Controllers\PollingDetailController::class, 'store'])->name('polling_detail-store');
+    Route::get('/pl-delete/{polling}',[\App\Http\Controllers\PollingController::class, 'destroy'])->name('polling-delete');
+});
+

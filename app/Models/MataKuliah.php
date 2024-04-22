@@ -17,6 +17,7 @@ class MataKuliah extends Model
         'nama_mata_kuliah',
         'program_studi',
         'kurikulum_id_kurikulum',
+        'SKS',
         'foto',
     ];
 

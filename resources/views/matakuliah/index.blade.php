@@ -27,30 +27,33 @@
                     <div class="col-lg-6">
                         <div class="card">
                             <div class="card-body">
-                                @if(Auth::user()->role == 'admin')
+                                @if(Auth::user()->role == 'prodi' || Auth::user()->role == 'mahasiswa')
                                     <form action="{{ route('matakuliah-create') }}">
                                         <button type="submit" class="btn btn-primary">Tambah Mata Kuliah</button>
                                     </form>
                                 @endif
+
                                 <br>
                                 <br>
                                 <table id="table-mk" class="table table-striped">
                                     <thead>
                                     <tr>
-                                        <th>Mata Kuliah</th>
+                                        <th>Kode Mata Kuliah</th>
                                         <th>Program Studi</th>
                                         <th>Aksi</th>
+                                        <th>SKS</th>
                                         <th>Foto</th>
                                     </tr>
                                     </thead>
                                     <tbody>
                                     @foreach($mks as $mk)
                                         <tr>
-                                            <td>{{ $mk->id_mata_kuliah }}</td>
+                                            <td>IN{{ $mk->id_mata_kuliah }}</td>
                                             <td>{{ $mk->nama_mata_kuliah }}</td>
                                             <td>{{ $mk->program_studi }}</td>
+                                            <td>{{ $mk->SKS }}</td>
                                             <td><img src="{{ asset('storage/' . $mk->foto) }}" alt="foto" class="img-thumbnail" style="max-width:100px"></td>
-                                            @if(Auth::user()->role == 'admin')
+                                            @if(Auth::user()->role == 'prodi' || Auth::user()->role == 'mahasiswa')
                                                 <td>
                                                     <a href="{{ route('matakuliah-edit', ['mataKuliah' => $mk->id_mata_kuliah]) }}" class="btn btn-warning" role="button"><i class="fas fa-edit"></i></a>
                                                     <a href="{{ route('matakuliah-delete', ['matakuliah' => $mk->id_mata_kuliah]) }}" class="btn btn-danger del-button" role="button"><i class="fas fa-trash"></i></a>

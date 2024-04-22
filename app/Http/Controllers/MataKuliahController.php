@@ -22,6 +22,7 @@ class MataKuliahController extends Controller
         ]);
     }
 
+
     /**
      * Show the form for creating a new resource.
      */
@@ -42,6 +43,7 @@ class MataKuliahController extends Controller
             'nama_mata_kuliah' => 'required|string|max:100',
             'program_studi' => 'required|string|max:100',
             'kurikulum_id_kurikulum' => 'required|string|max:100',
+            'SKS' => 'required|int',
             'foto' => 'mimes:jpeg,png|max:2048',
         ])->validate();
         $path = $request->file('foto')->store('foto_matakuliah', 'public');
@@ -80,11 +82,17 @@ class MataKuliahController extends Controller
             'nama_mata_kuliah' => 'required|string|max:100',
             'program_studi' => 'required|string|max:100',
             'kurikulum_id_kurikulum' => 'required|string|max:100',
+            'SKS' => 'required|int',
+            'foto' => 'mimes:jpeg,png|max:2048',
         ])->validate();
         $mataKuliah->id_mata_kuliah = $validatedData['id_mata_kuliah'];
         $mataKuliah->nama_mata_kuliah = $validatedData['nama_mata_kuliah'];
         $mataKuliah->program_studi = $validatedData['program_studi'];
         $mataKuliah->kurikulum_id_kurikulum = $validatedData['kurikulum_id_kurikulum'];
+        $mataKuliah->SKS = $validatedData['SKS'];
+        $mataKuliah->foto = $validatedData['foto'];
+        $path = $request->file('foto')->store('foto_matakuliah', 'public');
+        $mataKuliah->foto = $path;
         $mataKuliah->update($validatedData);
         return redirect(route('matakuliah-list'));
     }

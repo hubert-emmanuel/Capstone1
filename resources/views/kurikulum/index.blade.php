@@ -36,17 +36,14 @@
                                     <thead>
                                     <tr>
                                         <th>ID Kurikulum</th>
-                                        <th>Tahun Ajaran</th>
-                                        <th>Semester Aktif</th>
                                     </tr>
                                     </thead>
                                     <tbody>
                                     @foreach($kks as $kk)
                                         <tr>
                                             <td>{{ $kk->id_kurikulum }}</td>
-                                            <td>{{ $kk->tahun_ajaran }}</td>
-                                            <td>{{ $kk->semester_aktif }}</td>
                                             <td>
+                                                <a href="{{ route('kurikulum-edit', ['kurikulum' => $kk->id_kurikulum]) }}" class="btn btn-warning" role="button"><i class="fas fa-edit"></i></a>
                                                 <a href="{{ route('kurikulum-delete', ['kurikulum' => $kk->id_kurikulum]) }}" class="btn btn-danger del-button" role="button"><i class="fas fa-trash"></i></a>
                                             </td>
                                         </tr>

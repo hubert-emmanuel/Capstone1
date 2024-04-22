@@ -33,7 +33,7 @@
                                     </div>
                                 @endif
 
-                                <form method="post" action="{{ route('matakuliah-update', ['mataKuliah'=>$mk->id_mata_kuliah]) }}">
+                                <form method="post" action="{{ route('matakuliah-update', ['mataKuliah'=>$mk->id_mata_kuliah]) }} " enctype="multipart/form-data">
                                     @csrf
                                     <div class ="form-group">
                                         <label for="id-mk">ID Mata Kuliah</label>
@@ -61,6 +61,23 @@
                                                     <option name="id_kurikulum" value="{{ $kk->id_kurikulum }}">{{ $kk->id_kurikulum }} - {{ $kk->tahun_ajaran }} - {{ $kk->semester_aktif }}</option>
                                                 @endforeach
                                             </select>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="sks-mk" class="col-form-label col-sm-2">SKS</label>
+                                        <div class="col-sm-8">
+                                            <select id="sks-mk" name="SKS" required class="form-control select2">
+                                                <option name="SKS" value="1">1</option>
+                                                <option name="SKS" value="2">2</option>
+                                                <option name="SKS" value="3">3</option>
+                                                <option name="SKS" value="4">4</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class ="form-group">
+                                        <label for="mk-foto" class="col-form-label col-sm-2">Foto</label>
+                                        <div class="col-sm-4">
+                                            <input type="file" id="mk-foto" name="foto" value="{{ $mk->foto }}">
                                         </div>
                                     </div>
                                     <button type="submit" class="btn btn-primary">Update</button>
