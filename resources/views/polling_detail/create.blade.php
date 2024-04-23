@@ -7,12 +7,12 @@
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h1 class="m-0">Tambah Polling</h1>
+                        <h1 class="m-0">Tambah Polling Detail</h1>
                     </div><!-- /.col -->
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
-                            <li class="breadcrumb-item"><a href="#">Home</a></li>
-                            <li class="breadcrumb-item active">Polling</li>
+                            <li class="breadcrumb-item"><a href="{{ route('dashboard') }}">Home</a></li>
+                            <li class="breadcrumb-item active">Polling Detail</li>
                         </ol>
                     </div><!-- /.col -->
                 </div><!-- /.row -->
@@ -33,7 +33,7 @@
                                     </div>
                                 @endif
 
-                                <form method="post" action="{{ route('polling_detail-store') }}">
+                                <form method="post" action="{{ route('polling_detail-store-prodi') }}">
                                     @csrf
                                     <div class ="form-group">
                                         <label for="id-pld">ID Polling Detail</label>
@@ -53,9 +53,9 @@
                                     <div class="form-group">
                                         <label for="user-id" class="col-form-label col-sm-2">ID User</label>
                                         <div class="col-sm-8">
-                                            <select id="user-id" name="user_id_user" required class="form-control select2">
+                                            <select id="user-id" name="users_id" required class="form-control select2">
                                                 @foreach($users as $user)
-                                                    <option name="id_user" value="{{ $user->id_user }}">{{ $user->id_user }}</option>
+                                                    <option name="id_user" value="{{ $user->id }}">{{ $user->id }}</option>
                                                 @endforeach
                                             </select>
                                         </div>

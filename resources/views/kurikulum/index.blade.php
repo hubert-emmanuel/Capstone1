@@ -11,7 +11,7 @@
                     </div><!-- /.col -->
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
-                            <li class="breadcrumb-item"><a href="#">Home</a></li>
+                            <li class="breadcrumb-item"><a href="{{ route('dashboard') }}">Home</a></li>
                             <li class="breadcrumb-item active">Kurikulum</li>
                         </ol>
                     </div><!-- /.col -->
@@ -32,7 +32,7 @@
                                 </form>
                                 <br>
                                 <br>
-                                <table id="table-mk" class="table table-striped">
+                                <table id="table-kk" class="table table-striped">
                                     <thead>
                                     <tr>
                                         <th>ID Kurikulum</th>
@@ -43,6 +43,7 @@
                                         <tr>
                                             <td>{{ $kk->id_kurikulum }}</td>
                                             <td>
+                                                <a href="{{ route('matakuliah-list-prodi') }}" class="btn btn-warning" role="button"><i class="fas fa-plus"></i></a>
                                                 <a href="{{ route('kurikulum-edit', ['kurikulum' => $kk->id_kurikulum]) }}" class="btn btn-warning" role="button"><i class="fas fa-edit"></i></a>
                                                 <a href="{{ route('kurikulum-delete', ['kurikulum' => $kk->id_kurikulum]) }}" class="btn btn-danger del-button" role="button"><i class="fas fa-trash"></i></a>
                                             </td>
@@ -69,6 +70,6 @@
     <script src="{{ asset('plugins/datatables/jquery.dataTables.min.js') }}"></script>
     <script src="{{ asset('plugins/datatables.bs4/js/dataTables.bootstrap4.min.js') }}"></script>
     <script>
-        $('#table-mk').DataTable();
+        $('#table-kk').DataTable();
     </script>
 @endsection

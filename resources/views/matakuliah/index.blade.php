@@ -11,7 +11,7 @@
                     </div><!-- /.col -->
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
-                            <li class="breadcrumb-item"><a href="#">Home</a></li>
+                            <li class="breadcrumb-item"><a href="{{ route('dashboard') }}">Home</a></li>
                             <li class="breadcrumb-item active">Mata Kuliah</li>
                         </ol>
                     </div><!-- /.col -->
@@ -27,11 +27,27 @@
                     <div class="col-lg-6">
                         <div class="card">
                             <div class="card-body">
-                                @if(Auth::user()->role == 'prodi' || Auth::user()->role == 'mahasiswa')
-                                    <form action="{{ route('matakuliah-create') }}">
+                                @if(session('alert'))
+                                    <div class="alert alert-danger">
+                                        {{ session('alert') }}
+                                    </div>
+                                @endif
+
+                                @if(session('success'))
+                                    <div class="alert alert-success">
+                                        {{ session('success') }}
+                                    </div>
+                                @endif
+                                @if(Auth::user()->role == 'prodi')
+                                    <form action="{{ route('matakuliah-create-prodi') }}">
                                         <button type="submit" class="btn btn-primary">Tambah Mata Kuliah</button>
                                     </form>
                                 @endif
+                                    @if(Auth::user()->role == 'mahasiswa')
+                                        <form action="{{ route('matakuliah-create-mahasiswa') }}">
+                                            <button type="submit" class="btn btn-primary">Tambah Mata Kuliah</button>
+                                        </form>
+                                    @endif
 
                                 <br>
                                 <br>
@@ -53,10 +69,16 @@
                                             <td>{{ $mk->program_studi }}</td>
                                             <td>{{ $mk->SKS }}</td>
                                             <td><img src="{{ asset('storage/' . $mk->foto) }}" alt="foto" class="img-thumbnail" style="max-width:100px"></td>
-                                            @if(Auth::user()->role == 'prodi' || Auth::user()->role == 'mahasiswa')
+                                            @if(Auth::user()->role == 'prodi')
                                                 <td>
-                                                    <a href="{{ route('matakuliah-edit', ['mataKuliah' => $mk->id_mata_kuliah]) }}" class="btn btn-warning" role="button"><i class="fas fa-edit"></i></a>
-                                                    <a href="{{ route('matakuliah-delete', ['matakuliah' => $mk->id_mata_kuliah]) }}" class="btn btn-danger del-button" role="button"><i class="fas fa-trash"></i></a>
+                                                    <a href="{{ route('matakuliah-edit-prodi', ['mataKuliah' => $mk->id_mata_kuliah]) }}" class="btn btn-warning" role="button"><i class="fas fa-edit"></i></a>
+                                                    <a href="{{ route('matakuliah-delete-prodi', ['matakuliah' => $mk->id_mata_kuliah]) }}" class="btn btn-danger del-button" role="button"><i class="fas fa-trash"></i></a>
+                                                </td>
+                                            @endif
+                                            @if(Auth::user()->role == 'mahasiswa')
+                                                <td>
+                                                    <a href="{{ route('matakuliah-edit-mahasiswa', ['mataKuliah' => $mk->id_mata_kuliah]) }}" class="btn btn-warning" role="button"><i class="fas fa-edit"></i></a>
+                                                    <a href="{{ route('matakuliah-delete-mahasiswa', ['matakuliah' => $mk->id_mata_kuliah]) }}" class="btn btn-danger del-button" role="button"><i class="fas fa-trash"></i></a>
                                                 </td>
                                             @endif
                                         </tr>
@@ -80,8 +102,11 @@
 @endsection
 
 @section('ExtraJS')
-    <script src="{{ asset('plugins/datatables/jquery.dataTables.min.js') }}"></script>
-    <script src="{{ asset('plugins/datatables.bs4/js/dataTables.bootstrap4.min.js') }}"></script>
+    <script src="{{ asset('public/plugins/datatables/jquery.dataTables.min.js') }}"></script>
+    <script src="{{ asset('public/plugins/datatables.bs4/js/dataTables.bootstrap4.min.js') }}"></script>
+    <script src="{{ asset('https://code.jquery.com/jquery-3.6.0.min.js') }}"></script>
+    <script src="{{ asset('public/plugins/sweetalert2/sweetalert2.js') }}"></script>
+
     <script>
         $('#table-mk').DataTable();
         $('.del-button').on('click', function (e) {
@@ -96,5 +121,4 @@
             });
         });
     </script>
-    <script src="{{ asset('plugins/sweetalert2/sweetalert2.js') }}"></script>
 @endsection

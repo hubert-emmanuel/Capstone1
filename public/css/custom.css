@@ -1,0 +1,77 @@
+.py-12 {
+    background-color: lightgoldenrodyellow;
+}
+
+.py-6 {
+    background-color: mediumpurple;
+}
+
+h2 {
+    color: white;
+}
+
+.dashboard-header {
+    background-color: #0ff;
+}
+
+.btn {
+    background-color: darkorchid;
+    border: none;
+    color: white;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+    border-radius: 4px;
+}
+
+.btn-primary {
+    background-color: mediumpurple;
+}
+
+.btn-primary:hover {
+    background-color: rebeccapurple;
+}
+
+header {
+    background-color: blueviolet;
+}
+
+.min-h-screen {
+    background-color: mediumpurple;
+}
+
+.bg-white {
+    background-color: lightskyblue;
+}
+
+.main-footer {
+    background-color: mediumpurple;
+}
+
+.content {
+    background-color: lightgoldenrodyellow;
+}
+
+.content-header {
+    background-color: lightgoldenrodyellow;
+}
+
+.main-header {
+    background-color: mediumpurple;
+}
+
+.ms-3 {
+    background-color: mediumpurple;
+}
+
+.main-sidebar {
+    background-color: rebeccapurple;
+}
+
+.sidebar {
+    background-color: mediumpurple;
+}

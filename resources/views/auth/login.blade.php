@@ -1,8 +1,9 @@
 <x-guest-layout>
     <!-- Session Status -->
     <x-auth-session-status class="mb-4" :status="session('status')" />
+    <link href="{{ asset('css/custom.css') }}" rel="stylesheet">
 
-    <form method="POST" action="{{ route('login') }}">
+    <form method="POST" action="{{ route('login') }}" class="form-login">
         @csrf
 
         <!-- Email Address -->

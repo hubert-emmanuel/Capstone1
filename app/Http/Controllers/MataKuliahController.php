@@ -6,6 +6,7 @@ use App\Models\Kurikulum;
 use App\Models\MataKuliah;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
+use function Laravel\Prompts\alert;
 
 class MataKuliahController extends Controller
 {
@@ -46,11 +47,22 @@ class MataKuliahController extends Controller
             'SKS' => 'required|int',
             'foto' => 'mimes:jpeg,png|max:2048',
         ])->validate();
+
+        $currentSKS = $validatedData['SKS'];
+
+        $totalSKS = MataKuliah::sum('SKS');
+
+        $totalSKS += $currentSKS;
+
+        if ($totalSKS > 9) {
+            return redirect()->route('matakuliah-list')->with('alert', 'Sudah melebihi batas maksimum SKS');
+        }
+
         $path = $request->file('foto')->store('foto_matakuliah', 'public');
         $mataKuliah = new MataKuliah($validatedData);
         $mataKuliah->foto = $path;
         $mataKuliah -> save();
-        return redirect(route('matakuliah-list'));
+        return redirect(route('matakuliah-list'))->with('success', 'Mata kuliah berhasil disimpan.');
     }
 
     /**

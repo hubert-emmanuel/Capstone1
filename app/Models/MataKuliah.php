@@ -28,4 +28,6 @@ class MataKuliah extends Model
         return $this->belongsTo(Kurikulum::class);
     }
 
+
+
 }

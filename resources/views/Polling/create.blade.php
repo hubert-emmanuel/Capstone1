@@ -11,7 +11,7 @@
                     </div><!-- /.col -->
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
-                            <li class="breadcrumb-item"><a href="#">Home</a></li>
+                            <li class="breadcrumb-item"><a href="{{ route('dashboard') }}">Home</a></li>
                             <li class="breadcrumb-item active">Polling</li>
                         </ol>
                     </div><!-- /.col -->
@@ -32,27 +32,27 @@
                                         {{ implode('', $errors->all(':message')) }}
                                     </div>
                                 @endif
-
-                                <form method="post" action="{{ route('polling-store') }}">
-                                    @csrf
-                                    <div class ="form-group">
-                                        <label for="id-p">ID Polling</label>
-                                        <input type="text" class="form-control" id="id-p"
-                                               placeholder="Contoh: P01" name="id_polling" required autofocus>
-                                    </div>
-                                    <div class ="form-group">
-                                        <label for="tanggal_mulai-p">Tanggal Mulai Polling</label>
-                                        <input type="text" class="form-control" id="tanggal_mulai-p"
-                                               placeholder="Contoh: 2023-4-5" name="tanggal_mulai_polling" required autofocus>
-                                    </div>
-                                    <div class ="form-group">
-                                        <label for="tanggal_akhir-p">Tanggal Akhir Polling</label>
-                                        <input type="text" class="form-control" id="tanggal_akhir-p"
-                                               placeholder="Contoh: 2023-5-5" name="tanggal_akhir_polling" required autofocus>
-                                    </div>
-                                    <button type="submit" class="btn btn-primary">Submit</button>
-                                </form>
-
+                                @if(Auth::user()->role == 'prodi')
+                                        <form method="post" action="{{ route('polling-store-prodi') }}">
+                                            @csrf
+                                            <div class ="form-group">
+                                                <label for="id-p">ID Polling</label>
+                                                <input type="text" class="form-control" id="id-p"
+                                                       placeholder="Contoh: 1" name="id_polling" required autofocus>
+                                            </div>
+                                            <div class ="form-group">
+                                                <label for="tanggal_mulai-p">Tanggal Mulai Polling</label>
+                                                <input type="date" class="form-control" id="tanggal_mulai-p"
+                                                       placeholder="Contoh: 2023-4-5" name="tanggal_mulai_polling" required autofocus>
+                                            </div>
+                                            <div class ="form-group">
+                                                <label for="tanggal_akhir-p">Tanggal Akhir Polling</label>
+                                                <input type="date" class="form-control" id="tanggal_akhir-p"
+                                                       placeholder="Contoh: 2023-5-5" name="tanggal_akhir_polling" required autofocus>
+                                            </div>
+                                            <button type="submit" class="btn btn-primary">Submit</button>
+                                        </form>
+                                @endif
                             </div>
                         </div>
                     </div>

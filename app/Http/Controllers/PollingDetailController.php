@@ -16,8 +16,10 @@ class PollingDetailController extends Controller
      */
     public function index()
     {
+        $totalMhs = User::where('role', 'mahasiswa')->count();
         return view('polling_detail.index',[
             'pds' => PollingDetail::all(),
+            'totalMhs' => $totalMhs,
         ]);
     }
 
@@ -40,11 +42,17 @@ class PollingDetailController extends Controller
     {
         $validatedData  = validator($request->all(), [
             'id_polling_detail' => 'required|string|max:20',
+            'polling_id_polling' => 'required',
+            'users_id' => 'required',
+            'mata_kuliah_id_mata_kuliah' => 'required',
         ])->validate();
         $data = $request->all();
         $pollingDetail = new PollingDetail($validatedData);
+        $pollingDetail->polling_id_polling = $data['polling_id_polling'];
+        $pollingDetail->users_id = $data['users_id'];
+        $pollingDetail->mata_kuliah_id_mata_kuliah = $data['mata_kuliah_id_mata_kuliah'];
         $pollingDetail -> save();
-        return redirect(route('polling-list'));
+        return redirect(route('polling_detail-list-prodi'));
     }
 
     /**

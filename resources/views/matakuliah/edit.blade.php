@@ -11,7 +11,7 @@
                     </div><!-- /.col -->
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
-                            <li class="breadcrumb-item"><a href="#">Home</a></li>
+                            <li class="breadcrumb-item"><a href="{{ route('dashboard') }}">Home</a></li>
                             <li class="breadcrumb-item active">Mata Kuliah</li>
                         </ol>
                     </div><!-- /.col -->
@@ -32,57 +32,108 @@
                                         {{ implode('', $errors->all(':message')) }}
                                     </div>
                                 @endif
-
-                                <form method="post" action="{{ route('matakuliah-update', ['mataKuliah'=>$mk->id_mata_kuliah]) }} " enctype="multipart/form-data">
-                                    @csrf
-                                    <div class ="form-group">
-                                        <label for="id-mk">ID Mata Kuliah</label>
-                                        <input type="text" class="form-control" id="id-mk"
-                                               placeholder="Contoh: IN241" name="id_mata_kuliah" required readonly
-                                               autofocus value="{{ $mk->id_mata_kuliah }}">
-                                    </div>
-                                    <div class ="form-group">
-                                        <label for="nama-mk">Nama Mata Kuliah</label>
-                                        <input type="text" class="form-control" id="nama-mk"
-                                               placeholder="Contoh: Statistika" name="nama_mata_kuliah" required
-                                               value="{{ $mk->nama_mata_kuliah }}" autofocus>
-                                    </div>
-                                    <div class ="form-group">
-                                        <label for="ps-mk">Program Studi</label>
-                                        <input type="text" class="form-control" id="ps-mk"
-                                               placeholder="Contoh: Teknik Informatika" name="program_studi" required
-                                               value="{{ $mk->program_studi }}" autofocus>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="kk-mk" class="col-form-label col-sm-2">Kurikulum</label>
-                                        <div class="col-sm-8">
-                                            <select id="kk-mk" name="kurikulum_id_kurikulum" class="form-control select2">
-                                                @foreach($kks as $kk)
-                                                    <option name="id_kurikulum" value="{{ $kk->id_kurikulum }}">{{ $kk->id_kurikulum }} - {{ $kk->tahun_ajaran }} - {{ $kk->semester_aktif }}</option>
-                                                @endforeach
-                                            </select>
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="sks-mk" class="col-form-label col-sm-2">SKS</label>
-                                        <div class="col-sm-8">
-                                            <select id="sks-mk" name="SKS" required class="form-control select2">
-                                                <option name="SKS" value="1">1</option>
-                                                <option name="SKS" value="2">2</option>
-                                                <option name="SKS" value="3">3</option>
-                                                <option name="SKS" value="4">4</option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                    <div class ="form-group">
-                                        <label for="mk-foto" class="col-form-label col-sm-2">Foto</label>
-                                        <div class="col-sm-4">
-                                            <input type="file" id="mk-foto" name="foto" value="{{ $mk->foto }}">
-                                        </div>
-                                    </div>
-                                    <button type="submit" class="btn btn-primary">Update</button>
-                                </form>
-
+                                @if(Auth::user()->role == 'prodi')
+                                        <form method="post" action="{{ route('matakuliah-update-prodi', ['mataKuliah'=>$mk->id_mata_kuliah]) }} " enctype="multipart/form-data">
+                                            @csrf
+                                            <div class ="form-group">
+                                                <label for="id-mk">ID Mata Kuliah</label>
+                                                <input type="text" class="form-control" id="id-mk"
+                                                       placeholder="Contoh: IN241" name="id_mata_kuliah" required readonly
+                                                       autofocus value="{{ $mk->id_mata_kuliah }}">
+                                            </div>
+                                            <div class ="form-group">
+                                                <label for="nama-mk">Nama Mata Kuliah</label>
+                                                <input type="text" class="form-control" id="nama-mk"
+                                                       placeholder="Contoh: Statistika" name="nama_mata_kuliah" required
+                                                       value="{{ $mk->nama_mata_kuliah }}" autofocus>
+                                            </div>
+                                            <div class ="form-group">
+                                                <label for="ps-mk">Program Studi</label>
+                                                <input type="text" class="form-control" id="ps-mk"
+                                                       placeholder="Contoh: Teknik Informatika" name="program_studi" required
+                                                       value="{{ $mk->program_studi }}" autofocus>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="kk-mk" class="col-form-label col-sm-2">Kurikulum</label>
+                                                <div class="col-sm-8">
+                                                    <select id="kk-mk" name="kurikulum_id_kurikulum" class="form-control select2">
+                                                        @foreach($kks as $kk)
+                                                            <option name="id_kurikulum" value="{{ $kk->id_kurikulum }}">{{ $kk->id_kurikulum }} - {{ $kk->tahun_ajaran }} - {{ $kk->semester_aktif }}</option>
+                                                        @endforeach
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="sks-mk" class="col-form-label col-sm-2">SKS</label>
+                                                <div class="col-sm-8">
+                                                    <select id="sks-mk" name="SKS" required class="form-control select2">
+                                                        <option name="SKS" value="1">1</option>
+                                                        <option name="SKS" value="2">2</option>
+                                                        <option name="SKS" value="3">3</option>
+                                                        <option name="SKS" value="4">4</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class ="form-group">
+                                                <label for="mk-foto" class="col-form-label col-sm-2">Foto</label>
+                                                <div class="col-sm-4">
+                                                    <input type="file" id="mk-foto" name="foto" value="{{ $mk->foto }}">
+                                                </div>
+                                            </div>
+                                            <button type="submit" class="btn btn-primary">Update</button>
+                                        </form>
+                                @endif
+                                    @if(Auth::user()->role == 'mahasiswa')
+                                        <form method="post" action="{{ route('matakuliah-update-mahasiswa', ['mataKuliah'=>$mk->id_mata_kuliah]) }} " enctype="multipart/form-data">
+                                            @csrf
+                                            <div class ="form-group">
+                                                <label for="id-mk">ID Mata Kuliah</label>
+                                                <input type="text" class="form-control" id="id-mk"
+                                                       placeholder="Contoh: IN241" name="id_mata_kuliah" required readonly
+                                                       autofocus value="{{ $mk->id_mata_kuliah }}">
+                                            </div>
+                                            <div class ="form-group">
+                                                <label for="nama-mk">Nama Mata Kuliah</label>
+                                                <input type="text" class="form-control" id="nama-mk"
+                                                       placeholder="Contoh: Statistika" name="nama_mata_kuliah" required
+                                                       value="{{ $mk->nama_mata_kuliah }}" autofocus>
+                                            </div>
+                                            <div class ="form-group">
+                                                <label for="ps-mk">Program Studi</label>
+                                                <input type="text" class="form-control" id="ps-mk"
+                                                       placeholder="Contoh: Teknik Informatika" name="program_studi" required
+                                                       value="{{ $mk->program_studi }}" autofocus>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="kk-mk" class="col-form-label col-sm-2">Kurikulum</label>
+                                                <div class="col-sm-8">
+                                                    <select id="kk-mk" name="kurikulum_id_kurikulum" class="form-control select2">
+                                                        @foreach($kks as $kk)
+                                                            <option name="id_kurikulum" value="{{ $kk->id_kurikulum }}">{{ $kk->id_kurikulum }} - {{ $kk->tahun_ajaran }} - {{ $kk->semester_aktif }}</option>
+                                                        @endforeach
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="sks-mk" class="col-form-label col-sm-2">SKS</label>
+                                                <div class="col-sm-8">
+                                                    <select id="sks-mk" name="SKS" required class="form-control select2">
+                                                        <option name="SKS" value="1">1</option>
+                                                        <option name="SKS" value="2">2</option>
+                                                        <option name="SKS" value="3">3</option>
+                                                        <option name="SKS" value="4">4</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class ="form-group">
+                                                <label for="mk-foto" class="col-form-label col-sm-2">Foto</label>
+                                                <div class="col-sm-4">
+                                                    <input type="file" id="mk-foto" name="foto" value="{{ $mk->foto }}">
+                                                </div>
+                                            </div>
+                                            <button type="submit" class="btn btn-primary">Update</button>
+                                        </form>
+                                    @endif
                             </div>
                         </div>
                     </div>

@@ -7,12 +7,12 @@
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h1 class="m-0">Polling</h1>
+                        <h1 class="m-0">Polling Detail</h1>
                     </div><!-- /.col -->
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
-                            <li class="breadcrumb-item"><a href="#">Home</a></li>
-                            <li class="breadcrumb-item active">Polling</li>
+                            <li class="breadcrumb-item"><a href="{{ route('dashboard') }}">Home</a></li>
+                            <li class="breadcrumb-item active">Polling Detail</li>
                         </ol>
                     </div><!-- /.col -->
                 </div><!-- /.row -->
@@ -27,12 +27,14 @@
                     <div class="col-lg-6">
                         <div class="card">
                             <div class="card-body">
-                                <form action="{{ route('polling_detail-create') }}">
-                                    <button type="submit" class="btn btn-primary">Tambah Polling Detail</button>
-                                </form>
+                                @if(Auth::user()->role == 'prodi')
+                                    <form action="{{ route('polling_detail-create-prodi') }}">
+                                        <button type="submit" class="btn btn-primary">Tambah Polling Detail</button>
+                                    </form>
+                                @endif
                                 <br>
                                 <br>
-                                <table id="table-mk" class="table table-striped">
+                                <table id="table-pld" class="table table-striped">
                                     <thead>
                                     <tr>
                                         <th>ID Polling Detail</th>
@@ -46,12 +48,15 @@
                                         <tr>
                                             <td>{{ $pd->id_polling_detail }}</td>
                                             <td>{{ $pd->polling_id_polling }}</td>
-                                            <td>{{ $pd->user_id_user }}</td>
+                                            <td>{{ $pd->users_id }}</td>
                                             <td>{{ $pd->mata_kuliah_id_mata_kuliah }}</td>
                                         </tr>
                                     @endforeach
                                     </tbody>
                                 </table>
+                                <div>
+                                    Total Mahasiswa: {{ $totalMhs }}
+                                </div>
                             </div>
                         </div>
                     </div>

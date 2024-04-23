@@ -50,11 +50,12 @@ Route::middleware(['auth', 'admin'])->group(function () {
 });
 
 Route::middleware(['auth', 'prodi'])->group(function () {
-    Route::get('/mk-create',[\App\Http\Controllers\MataKuliahController::class, 'create'])->name('matakuliah-create');
-    Route::post('/mk-create',[\App\Http\Controllers\MataKuliahController::class, 'store'])->name('matakuliah-store');
-    Route::get('/mk-edit/{mataKuliah}',[\App\Http\Controllers\MataKuliahController::class, 'edit'])->name('matakuliah-edit');
-    Route::post('/mk-edit/{mataKuliah}',[\App\Http\Controllers\MataKuliahController::class, 'update'])->name('matakuliah-update');
-    Route::get('/mk-delete/{matakuliah}',[\App\Http\Controllers\MataKuliahController::class, 'destroy'])->name('matakuliah-delete');
+    Route::get('/matakuliah/prodi',[\App\Http\Controllers\MataKuliahController::class, 'index'])->name('matakuliah-list-prodi');
+    Route::get('/mk-create/prodi',[\App\Http\Controllers\MataKuliahController::class, 'create'])->name('matakuliah-create-prodi');
+    Route::post('/mk-create/prodi',[\App\Http\Controllers\MataKuliahController::class, 'store'])->name('matakuliah-store-prodi');
+    Route::get('/mk-edit/{mataKuliah}/prodi',[\App\Http\Controllers\MataKuliahController::class, 'edit'])->name('matakuliah-edit-prodi');
+    Route::post('/mk-edit/{mataKuliah}/prodi',[\App\Http\Controllers\MataKuliahController::class, 'update'])->name('matakuliah-update-prodi');
+    Route::get('/mk-delete/{matakuliah}/prodi',[\App\Http\Controllers\MataKuliahController::class, 'destroy'])->name('matakuliah-delete-prodi');
 
     Route::get('/kurikulum',[\App\Http\Controllers\KurikulumController::class, 'index'])->name('kurikulum-list');
     Route::get('/kk-create',[\App\Http\Controllers\KurikulumController::class, 'create'])->name('kurikulum-create');
@@ -63,24 +64,32 @@ Route::middleware(['auth', 'prodi'])->group(function () {
     Route::post('/kk-edit/{kurikulum}',[\App\Http\Controllers\KurikulumController::class, 'update'])->name('kurikulum-update');
     Route::get('/kk-delete/{kurikulum}',[\App\Http\Controllers\KurikulumController::class, 'destroy'])->name('kurikulum-delete');
 
-    Route::get('/pl-create',[\App\Http\Controllers\PollingController::class, 'create'])->name('polling-create');
-    Route::post('/pl-create',[\App\Http\Controllers\PollingController::class, 'store'])->name('polling-store');
-    Route::get('/pld-create',[\App\Http\Controllers\PollingDetailController::class, 'create'])->name('polling_detail-create');
-    Route::post('/pld-create',[\App\Http\Controllers\PollingDetailController::class, 'store'])->name('polling_detail-store');
-    Route::get('/pl-delete/{polling}',[\App\Http\Controllers\PollingController::class, 'destroy'])->name('polling-delete');
+    Route::get('/polling/prodi',[\App\Http\Controllers\PollingController::class, 'index'])->name('polling-list-prodi');
+    Route::get('/pl-create/prodi',[\App\Http\Controllers\PollingController::class, 'create'])->name('polling-create-prodi');
+    Route::post('/pl-create/prodi',[\App\Http\Controllers\PollingController::class, 'store'])->name('polling-store-prodi');
+    Route::get('/pl-edit/{polling}',[\App\Http\Controllers\PollingController::class, 'edit'])->name('polling-edit-prodi');
+    Route::post('/pl-edit/{polling}',[\App\Http\Controllers\PollingController::class, 'update'])->name('polling-update-prodi');
+    Route::get('/pl-delete/{polling}',[\App\Http\Controllers\PollingController::class, 'destroy'])->name('polling-delete-prodi');
+    Route::get('/pld-create/prodi',[\App\Http\Controllers\PollingDetailController::class, 'create'])->name('polling_detail-create-prodi');
+    Route::post('/pld-create/prodi',[\App\Http\Controllers\PollingDetailController::class, 'store'])->name('polling_detail-store-prodi');
+    Route::get('/pl-delete/{polling}/prodi',[\App\Http\Controllers\PollingController::class, 'destroy'])->name('polling-delete-prodi');
 });
 
 Route::middleware(['auth', 'mahasiswa'])->group(function () {
-    Route::get('/mk-create',[\App\Http\Controllers\MataKuliahController::class, 'create'])->name('matakuliah-create');
-    Route::post('/mk-create',[\App\Http\Controllers\MataKuliahController::class, 'store'])->name('matakuliah-store');
-    Route::get('/mk-edit/{mataKuliah}',[\App\Http\Controllers\MataKuliahController::class, 'edit'])->name('matakuliah-edit');
-    Route::post('/mk-edit/{mataKuliah}',[\App\Http\Controllers\MataKuliahController::class, 'update'])->name('matakuliah-update');
-    Route::get('/mk-delete/{matakuliah}',[\App\Http\Controllers\MataKuliahController::class, 'destroy'])->name('matakuliah-delete');
+    Route::get('/matakuliah/mahasiswa',[\App\Http\Controllers\MataKuliahController::class, 'index'])->name('matakuliah-list-mahasiswa');
+    Route::get('/mk-create/mahasiswa',[\App\Http\Controllers\MataKuliahController::class, 'create'])->name('matakuliah-create-mahasiswa');
+    Route::post('/mk-create/mahasiswa',[\App\Http\Controllers\MataKuliahController::class, 'store'])->name('matakuliah-store-mahasiswa');
+    Route::get('/mk-edit/{mataKuliah}/mahasiswa',[\App\Http\Controllers\MataKuliahController::class, 'edit'])->name('matakuliah-edit-mahasiswa');
+    Route::post('/mk-edit/{mataKuliah}/mahasiswa',[\App\Http\Controllers\MataKuliahController::class, 'update'])->name('matakuliah-update-mahasiswa');
+    Route::get('/mk-delete/{matakuliah}/mahasiswa',[\App\Http\Controllers\MataKuliahController::class, 'destroy'])->name('matakuliah-delete-mahasiswa');
 
-    Route::get('/pl-create',[\App\Http\Controllers\PollingController::class, 'create'])->name('polling-create');
-    Route::post('/pl-create',[\App\Http\Controllers\PollingController::class, 'store'])->name('polling-store');
-    Route::get('/pld-create',[\App\Http\Controllers\PollingDetailController::class, 'create'])->name('polling_detail-create');
-    Route::post('/pld-create',[\App\Http\Controllers\PollingDetailController::class, 'store'])->name('polling_detail-store');
-    Route::get('/pl-delete/{polling}',[\App\Http\Controllers\PollingController::class, 'destroy'])->name('polling-delete');
+    Route::get('/pl-create/mahasiswa',[\App\Http\Controllers\PollingController::class, 'create'])->name('polling-create-mahasiswa');
+    Route::post('/pl-create/mahasiswa',[\App\Http\Controllers\PollingController::class, 'store'])->name('polling-store-mahasiswa');
+    Route::get('/pld-create/mahasiswa',[\App\Http\Controllers\PollingDetailController::class, 'create'])->name('polling_detail-create-mahasiswa');
+    Route::post('/pld-create/mahasiswa',[\App\Http\Controllers\PollingDetailController::class, 'store'])->name('polling_detail-store-mahasiswa');
+    Route::get('/pl-delete/{polling}/mahasiswa',[\App\Http\Controllers\PollingController::class, 'destroy'])->name('polling-delete-mahasiswa');
 });
 
+Route::middleware(['auth', 'CheckSKSLimit'])->group(function () {
+
+});

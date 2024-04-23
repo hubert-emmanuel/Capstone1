@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Kurikulum;
+use App\Models\MataKuliah;
 use App\Models\Polling;
 use Illuminate\Http\Request;
 
@@ -33,8 +34,9 @@ class PollingController extends Controller
     {
         $validatedData  = validator($request->all(), [
             'id_polling' => 'required|string|max:20',
+            'tanggal_mulai_polling' => 'required|date',
+            'tanggal_akhir_polling' => 'required|date',
         ])->validate();
-        $data = $request->all();
         $polling = new Polling($validatedData);
         $polling -> save();
         return redirect(route('polling-list'));
@@ -53,7 +55,9 @@ class PollingController extends Controller
      */
     public function edit(Polling $polling)
     {
-        //
+        return view('polling.edit', [
+            'p' => $polling,
+        ]);
     }
 
     /**
@@ -61,7 +65,17 @@ class PollingController extends Controller
      */
     public function update(Request $request, Polling $polling)
     {
-        //
+        $validatedData  = validator($request->all(), [
+            'id_polling' => 'required|int',
+            'tanggal_mulai_polling' => 'required|date',
+            'tanggal_akhir_polling' => 'required|date',
+        ])->validate();
+
+        $polling->id_polling = $validatedData['id_polling'];
+        $polling->tanggal_mulai_polling = $validatedData['tanggal_mulai_polling'];
+        $polling->tanggal_akhir_polling = $validatedData['tanggal_akhir_polling'];
+        $polling->update($validatedData);
+        return redirect(route('polling-list-prodi'));
     }
 
     /**
@@ -69,6 +83,7 @@ class PollingController extends Controller
      */
     public function destroy(Polling $polling)
     {
-        //
+        $polling->delete();
+        return redirect()->back();
     }
 }
