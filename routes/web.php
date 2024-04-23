@@ -83,6 +83,7 @@ Route::middleware(['auth', 'mahasiswa'])->group(function () {
     Route::post('/mk-edit/{mataKuliah}/mahasiswa',[\App\Http\Controllers\MataKuliahController::class, 'update'])->name('matakuliah-update-mahasiswa');
     Route::get('/mk-delete/{matakuliah}/mahasiswa',[\App\Http\Controllers\MataKuliahController::class, 'destroy'])->name('matakuliah-delete-mahasiswa');
 
+    Route::get('/polling/mahasiswa',[\App\Http\Controllers\PollingController::class, 'index'])->name('polling-list-mahasiswa');
     Route::get('/pl-create/mahasiswa',[\App\Http\Controllers\PollingController::class, 'create'])->name('polling-create-mahasiswa');
     Route::post('/pl-create/mahasiswa',[\App\Http\Controllers\PollingController::class, 'store'])->name('polling-store-mahasiswa');
     Route::get('/pld-create/mahasiswa',[\App\Http\Controllers\PollingDetailController::class, 'create'])->name('polling_detail-create-mahasiswa');
